@@ -55,29 +55,35 @@ adapted from Laravel to this dependency-free app.
    is in-memory on purpose; put real data in a hosted database or KV store and
    read credentials from environment variables.
 
-## Local development
+## Run locally
+
+Docker is **not required** to run or test the app — only to deploy it. PHP 8.2+
+and Composer are enough.
 
 ```bash
-composer install
-composer serve     # php -S 127.0.0.1:8000 -t public public/index.php
-composer test
+composer install     # once, generates vendor/
+composer serve       # http://127.0.0.1:8000
+composer test        # 10 assertions, no dependencies
 ```
 
 ```bash
 curl localhost:8000/health
 curl localhost:8000/api/users
+curl localhost:8000/api/users/2
 curl -X POST localhost:8000/api/users -d '{"name":"Ada","email":"ada@example.com"}'
 ```
 
-The front controller detects the `cli-server` SAPI and returns real files to the
-built-in server, so static assets resolve exactly like they do in Caddy.
+`composer serve` runs `php -S 127.0.0.1:8000 -t public public/index.php`. The
+front controller detects the `cli-server` SAPI and hands real files back to the
+built-in server, so static assets and routing behave exactly like they do behind
+Caddy in production.
 
-To exercise the container itself:
+To exercise the container itself (optional):
 
 ```bash
 docker build -f Dockerfile.vercel -t php-vercel .
 docker run --rm -p 8080:80 php-vercel
-curl localhost:8080/health
+curl --fail localhost:8080/health
 ```
 
 ## Deploy
