@@ -1,0 +1,19 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:80} {
+	root * /app/public
+	encode zstd gzip
+
+	# Any path that is not a real file falls through to the front controller.
+	php_server {
+		try_files {path} /index.php
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

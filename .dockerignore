@@ -1,0 +1,18 @@
+# The image must never contain .env files: Vercel injects environment
+# variables when the container starts.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+
+node_modules
+tests
+vendor
+logs
+*.log
+
+.vercel
+Dockerfile.vercel
+.dockerignore
+README.md
