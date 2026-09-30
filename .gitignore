@@ -4,3 +4,4 @@ vendor
 .env.local
 .DS_Store
 /.logs
+.DS_Store

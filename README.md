@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/cover.png" alt="php-vercel — Deploy PHP บน Vercel ได้ง่าย ๆ" width="100%">
+</div>
+
 # php-vercel
 
 PHP app on Vercel, packaged with **Docker + FrankenPHP** and deployed as a
